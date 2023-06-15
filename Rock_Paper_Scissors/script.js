@@ -1,18 +1,22 @@
 const computerChoice = getComputerChoice();
 const playerChoice = getPlayerChoice();
+const round = playRound(playerChoice, computerChoice);
 
 function getPlayerChoice() {
-    const choice = prompt('Choose Rock (1), Choose Paper (2), Choose Scissors (3): ');
+    const choice = parseInt(prompt('Choose Rock (1), Choose Paper (2), Choose Scissors (3): '));
 
     // Choose between Rock, Paper, or Scissors
     if (choice == 1) {
-        return ('You chose Rock');
+        console.log('You chose Rock');
+        return 'Rock'
     } else if (choice == 2) {
-        return ('You chose Paper');
+        console.log('You chose Paper');
+        return 'Paper'
     } else if (choice == 3) {
-        return ('You chose Scissors');
+        console.log('You chose Scissors');
+        return 'Scissors'
     } else {
-        return ('Invalid Choice');
+        console.log('Invalid Choice');
     }
 }
 
@@ -26,7 +30,22 @@ function getComputerChoice() {
 }
 
 function playRound(playerChoice, computerChoice) {
+    const playerWin = 'Player Wins!'
+    let result;
+    if (playerChoice === 'Rock' && computerChoice === 'Scissors') {
+        result = playerWin;
+    } else if (playerChoice === 'Paper' && computerChoice === 'Rock') {
+        result = playerWin;
+    } else if (playerChoice === 'Scissors' && computerChoice === 'Paper') {
+        result = playerWin;
+    } else if (playerChoice === computerChoice) {
+       result = 'Tie';
+    } else {
+        result = 'Computer Wins!'
+    }
 
+    return result;
 }
 
-console.log(computerChoice);
+console.log(computerChoice); // Test
+console.log(round);
