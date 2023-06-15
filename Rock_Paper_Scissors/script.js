@@ -1,6 +1,7 @@
-const computerChoice = getComputerChoice();
-const playerChoice = getPlayerChoice();
-const round = playRound(playerChoice, computerChoice);
+let computerChoice;
+let playerChoice;
+let round;
+
 
 function getPlayerChoice() {
     const choice = parseInt(prompt('Choose Rock (1), Choose Paper (2), Choose Scissors (3): '));
@@ -17,6 +18,7 @@ function getPlayerChoice() {
         return 'Scissors'
     } else {
         console.log('Invalid Choice');
+        // Add (return getPlayerChoice())
     }
 }
 
@@ -46,6 +48,36 @@ function playRound(playerChoice, computerChoice) {
 
     return result;
 }
+function main() {
+    let computerScore = 0;
+    let playerScore = 0;
+    for (let i = 0; i < 4; i++) {
+        computerChoice = getComputerChoice()
+        playerChoice= getPlayerChoice()
+        round = playRound(playerChoice, computerChoice);
 
-console.log(computerChoice); // Test
-console.log(round);
+        if (round === 'Computer Wins!') {
+            computerScore++;
+        } else if (round === 'Player Wins!') {
+            playerScore++;
+        } else {
+            continue;
+        }
+        
+        // Choices 
+        console.log('Player Choice: ', playerChoice);
+        console.log('Computer Choice: ', computerChoice);
+
+        //Separator
+        console.log('-------------------------------------');
+
+        //Scores
+        console.log('Player: ', playerScore);
+        console.log('Computer: ', computerScore);
+        console.log('Round Number: ', i + 1)
+    }
+
+    console.log('Round: ', round)
+}
+
+main();
