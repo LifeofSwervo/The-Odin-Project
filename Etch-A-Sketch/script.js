@@ -1,5 +1,13 @@
+let color = "black";
+
 document.addEventListener("DOMContentLoaded", function(){
-    createBoard(32);
+    createBoard(16);
+
+    let btnPopup = document.querySelector("#popup")
+    btnPopup.addEventListener("click", function() {
+        let size = getSize();
+        createBoard(size);
+    })
 })
 
 function createBoard(size) {
@@ -12,7 +20,12 @@ function createBoard(size) {
 
     for (let i = 0; i < numDivs; i++) {
         let div = document.createElement("div");
-        div.style.backgroundColor = "yellow";
+        
+        div.style.backgroundColor = 'white'
+        
+        // Drawing event listener
+        div.addEventListener("mouseover", colorDiv)
+
         board.insertAdjacentElement("beforeend", div);
     }
 
@@ -27,6 +40,24 @@ function getSize() {
         message.innerHTML = "Input a number between 1 and 100."
     } else {
         message.innerHTML = "Now you can draw!"
+        return input
     }
 }
 
+function colorDiv() {
+    if (color == "random") {
+        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)` // Randomizes color
+    } else {
+        this.style.backgroundColor = 'black'
+    }
+}
+
+function setColor(colorChoice) {
+    color = colorChoice;
+}
+
+function resetBoard() {
+    let divs = document.querySelectorAll(".board div");
+    divs.forEach((div) => div.style.backgroundColor = 'white');
+
+}
