@@ -1,13 +1,18 @@
 let color = "black";
 let click = false;
 
+// Create board upon DOM content loading
 document.addEventListener("DOMContentLoaded", function(){
+    // Default size of board (grid) set to 16
     createBoard(16);
 
+    // Allow drawing on board
     document.querySelector("body").addEventListener("click", function(e) {
         if (e.target.tagname != "BUTTON") {
             click = !click;
             let draw = document.querySelector("#draw");
+
+            // Indicator informing user they are allowed (and not allowed) to draw
             if (click) {
                 draw.innerHTML = "Now You Can Draw";
             } else {
@@ -17,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function(){
     })
 
     let btnPopup = document.querySelector("#popup")
+
+    // Popup prompt asking player the size of the board. (If they would like to increase or decrease it)
     btnPopup.addEventListener("click", function() {
         let size = getSize();
         createBoard(size);
@@ -49,7 +56,7 @@ function getSize() {
     let message = document.querySelector("#message");
     if (input == "") { // If string input
         message.innerHTML = "Please provide a number."
-    } else if (input <= 0 || input > 100) { // If less than 0 or more than 100
+    } else if (input <= 0 || input > 100) { // If less than (or equal to) 0 or more than 100
         message.innerHTML = "Input a number between 1 and 100."
     } else {
         message.innerHTML = "Now you can draw!"
@@ -58,6 +65,7 @@ function getSize() {
 }
 
 function colorDiv() {
+    //Sets the color of the pen to either random or black. (Depending on which button is selected)
     if (click) {
         if (color == "random") {
             this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)` // Randomizes color
