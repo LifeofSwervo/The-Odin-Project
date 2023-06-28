@@ -13,7 +13,7 @@ function troubleshooting() {
 
 	// Edit between these lines
 	// =================================
-	result = a + b;
+	result = a + b; // a + b was surrounded by quotation marks, removed so variable would be read. 
 
 	// =================================
 
